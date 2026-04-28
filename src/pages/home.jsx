@@ -1,4 +1,5 @@
 import KnowledgeGraph from '../components/KnowledgeGraph.jsx'
+import SourceSummary from '../components/SourceSummary.jsx'
 
 export default function Home(){
   return (
@@ -19,6 +20,8 @@ export default function Home(){
           ]
         }}
       />
+
+      <SourceSummary />
     </div>
   )
 }
