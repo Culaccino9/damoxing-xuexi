@@ -1,4 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom'
+import SearchBox from './SearchBox.jsx'
 
 const navItems = [
   { path: '/', label: '首页', desc: '知识地图' },
@@ -16,11 +17,13 @@ export default function Layout(){
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: '#020617', color: '#e2e8f0' }}>
       <aside style={{ width: 280, padding: 24, background: '#0f172a', borderRight: '1px solid #1e293b', position: 'sticky', top: 0, height: '100vh', overflowY: 'auto' }}>
-        <div style={{ marginBottom: 28 }}>
+        <div style={{ marginBottom: 20 }}>
           <div style={{ color: '#38bdf8', fontWeight: 800, letterSpacing: 1 }}>LLM DOCS</div>
           <h2 style={{ margin: '8px 0 4px' }}>大模型学习站</h2>
           <p style={{ color: '#94a3b8', fontSize: 13, lineHeight: 1.6 }}>基于 dive-into-llms 整理的可视化知识系统</p>
         </div>
+
+        <SearchBox />
 
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {navItems.map((item) => {
