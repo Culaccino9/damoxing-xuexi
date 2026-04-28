@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>动手学大模型 · 知识图谱学习站</title>
+  <style>
+    :root{
+      --bg:#07111f; --panel:#0f1d33; --panel2:#14243e; --text:#edf5ff; --muted:#9fb4d8;
+      --blue:#65c7ff; --green:#79f2b3; --yellow:#ffd166; --red:#ff7b7b; --purple:#b99cff;
+      --line:rgba(255,255,255,.12); --shadow:0 18px 60px rgba(0,0,0,.32);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:
+      radial-gradient(circle at 20% -10%,rgba(101,199,255,.25),transparent 35%),
+      radial-gradient(circle at 85% 10%,rgba(121,242,179,.14),transparent 34%),
+      var(--bg);color:var(--text);line-height:1.72}
+    a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{width:min(1180px,92vw);margin:0 auto}
+    header{position:sticky;top:0;z-index:5;background:rgba(7,17,31,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    nav{display:flex;align-items:center;justify-content:space-between;min-height:66px;gap:18px}
+    .logo{font-weight:800;letter-spacing:.04em}.nav a{margin-left:18px;color:#cfe3ff;font-size:14px}
+    .hero{padding:76px 0 40px}.grid{display:grid;gap:20px}.hero-grid{grid-template-columns:1.1fr .9fr;align-items:stretch}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:var(--shadow)}
+    h1{font-size:clamp(34px,5vw,66px);line-height:1.05;margin:12px 0 18px;letter-spacing:-.04em}
+    h2{font-size:32px;margin:0 0 18px} h3{font-size:20px;margin:0 0 10px}.lead{font-size:18px;color:#cfe0fb}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;color:var(--green);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.12em}
+    .pill{display:inline-flex;align-items:center;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.05);color:#dcecff;font-size:13px;margin:4px 6px 4px 0}
+    .section{padding:42px 0}.cols-3{grid-template-columns:repeat(3,1fr)}.cols-2{grid-template-columns:repeat(2,1fr)}
+    .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}.kpi div{border:1px solid var(--line);border-radius:18px;padding:16px;background:rgba(255,255,255,.04)}
+    .kpi strong{display:block;font-size:28px;color:var(--yellow)}.muted{color:var(--muted)}
+    .topic{position:relative;overflow:hidden}.topic:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,var(--blue),var(--green),var(--purple))}
+    .tag{font-size:12px;color:#07111f;background:var(--green);border-radius:999px;padding:2px 8px;font-weight:800}
+    .topic ul{padding-left:20px;margin:8px 0 0}.topic li{margin:5px 0;color:#cbdaf1}
+    .diagram{background:#081426;border:1px solid var(--line);border-radius:24px;padding:18px;margin-top:16px;overflow:auto}
+    svg text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:18px;background:rgba(255,255,255,.035)}
+    th,td{border-bottom:1px solid var(--line);padding:14px;text-align:left;vertical-align:top} th{color:var(--green);font-size:13px}
+    .source{font-size:13px;color:#b7c8e6}.footer{padding:40px 0 70px;color:#8fa4c8}
+    .btn{display:inline-flex;margin-top:12px;background:linear-gradient(90deg,var(--blue),var(--green));color:#06101f;font-weight:900;border-radius:14px;padding:12px 16px}
+    @media(max-width:900px){.hero-grid,.cols-3,.cols-2,.kpi{grid-template-columns:1fr}.nav{display:none}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">Dive into LLMs · HTML Learning Map</div>
+      <div class="nav">
+        <a href="#overview">总览</a><a href="#topics">知识模块</a><a href="#flows">流程图</a><a href="#study">学习路径</a><a href="#source">来源</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero hero-grid grid">
+    <div class="card">
+      <div class="eyebrow">Repository Study Notes</div>
+      <h1>《动手学大模型》知识点可视化学习站</h1>
+      <p class="lead">本页面基于 GitHub 仓库 <b>Lordog/dive-into-llms</b> 的 README 与章节教程目录整理，将大模型实践路线压缩成「知识地图 + 流程图 + 模块卡片」的静态 HTML 项目。</p>
+      <div>
+        <span class="pill">微调与部署</span><span class="pill">Prompt / CoT</span><span class="pill">知识编辑</span><span class="pill">数学推理</span>
+        <span class="pill">水印 / 隐写</span><span class="pill">越狱与安全</span><span class="pill">多模态</span><span class="pill">GUI Agent</span><span class="pill">RLHF</span>
+      </div>
+      <a class="btn" href="#study">开始学习路径</a>
+    </div>
+    <div class="card">
+      <h3>这套教程的核心定位</h3>
+      <p class="muted">仓库 README 说明该项目来自上海交通大学相关课程讲义拓展，目标是提供大模型相关的入门编程参考，通过简单实践帮助快速入门并服务课程设计或科研。</p>
+      <div class="kpi">
+        <div><strong>11</strong><span>主教程模块</span></div>
+        <div><strong>3</strong><span>材料形态：课件/教程/脚本</span></div>
+        <div><strong>4</strong><span>2025 新增主题方向</span></div>
+        <div><strong>1</strong><span>国产化全流程专区</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="overview" class="section">
+    <div class="card">
+      <h2>一张图看懂知识版图</h2>
+      <p class="muted">它不是纯理论教程，而是以「任务 → 方法 → 代码实践 → 验证/部署」为主线的大模型实践项目。</p>
+      <div class="diagram">
+        <svg width="1060" height="450" viewBox="0 0 1060 450" role="img" aria-label="LLM knowledge map">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1"><stop stop-color="#65c7ff"/><stop offset="1" stop-color="#79f2b3"/></linearGradient>
+            <filter id="sh"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".35"/></filter>
+          </defs>
+          <rect width="1060" height="450" rx="24" fill="#09172a"/>
+          <circle cx="530" cy="220" r="82" fill="url(#g1)" filter="url(#sh)"/>
+          <text x="530" y="210" text-anchor="middle" font-size="23" font-weight="800" fill="#05101f">LLM 实践</text>
+          <text x="530" y="242" text-anchor="middle" font-size="16" fill="#05101f">从调用到安全</text>
+          <g fill="#142946" stroke="#31547d" stroke-width="1.2">
+            <rect x="50" y="52" width="210" height="72" rx="18"/><rect x="50" y="184" width="210" height="72" rx="18"/><rect x="50" y="316" width="210" height="72" rx="18"/>
+            <rect x="800" y="52" width="210" height="72" rx="18"/><rect x="800" y="184" width="210" height="72" rx="18"/><rect x="800" y="316" width="210" height="72" rx="18"/>
+            <rect x="330" y="34" width="400" height="58" rx="18"/><rect x="330" y="348" width="400" height="58" rx="18"/>
+          </g>
+          <g stroke="#65c7ff" stroke-width="2" opacity=".75"><path d="M260 88 C340 88 390 160 448 190"/><path d="M260 220 H448"/><path d="M260 352 C340 352 390 280 448 250"/><path d="M612 190 C680 130 730 88 800 88"/><path d="M612 220 H800"/><path d="M612 250 C680 310 730 352 800 352"/><path d="M530 138 V92"/><path d="M530 302 V348"/></g>
+          <g fill="#edf5ff" font-size="16" font-weight="700">
+            <text x="155" y="84" text-anchor="middle">基础能力</text><text x="155" y="216" text-anchor="middle">推理增强</text><text x="155" y="348" text-anchor="middle">模型改造</text>
+            <text x="905" y="84" text-anchor="middle">内容可信</text><text x="905" y="216" text-anchor="middle">多模态/Agent</text><text x="905" y="348" text-anchor="middle">安全对齐</text>
+            <text x="530" y="70" text-anchor="middle">微调 · 部署 · API 调用</text><text x="530" y="383" text-anchor="middle">课程项目 / 科研实验 / 工程 Demo</text>
+          </g>
+          <g fill="#9fb4d8" font-size="13">
+            <text x="155" y="106" text-anchor="middle">Transformers / Gradio</text>
+            <text x="155" y="238" text-anchor="middle">Prompt / CoT / PoT</text>
+            <text x="155" y="370" text-anchor="middle">知识编辑 / 蒸馏</text>
+            <text x="905" y="106" text-anchor="middle">水印 / 隐写</text>
+            <text x="905" y="238" text-anchor="middle">MLLM / GUI Agent</text>
+            <text x="905" y="370" text-anchor="middle">越狱 / Agent 安全 / RLHF</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="topics" class="section">
+    <h2>11 个知识模块速记</h2>
+    <div class="grid cols-3">
+      <article class="card topic"><span class="tag">01</span><h3>微调与部署</h3><p>用 Transformers 选择预训练模型，在特定任务上微调，再用 Gradio Spaces 部署 Demo。</p><ul><li>数据处理</li><li>模型加载</li><li>训练/验证/预测</li><li>Demo 发布</li></ul></article>
+      <article class="card topic"><span class="tag">02</span><h3>提示学习与思维链</h3><p>掌握 API 调用、零样本/少样本提示、自然语言 CoT 与程序化 PoT 推理。</p><ul><li>API Key</li><li>GUI / CLI 调用</li><li>CoT</li><li>Self-Consistency</li></ul></article>
+      <article class="card topic"><span class="tag">03</span><h3>知识编辑</h3><p>对模型记忆中的特定知识进行定位、修改与验证，关注编辑后是否准确、局部、稳定。</p><ul><li>知识定位</li><li>编辑方法</li><li>验证集评估</li><li>副作用检查</li></ul></article>
+      <article class="card topic"><span class="tag">04</span><h3>数学推理</h3><p>通过监督微调、蒸馏等方式提升模型的多步骤数学推理能力，构造迷你 R1 风格实验。</p><ul><li>题目数据</li><li>推理轨迹</li><li>SFT</li><li>答案校验</li></ul></article>
+      <article class="card topic"><span class="tag">05</span><h3>模型水印</h3><p>在生成文本中嵌入人类不易察觉、但可检测的水印，用于溯源和内容识别。</p><ul><li>生成约束</li><li>水印嵌入</li><li>检测统计</li><li>鲁棒性</li></ul></article>
+      <article class="card topic"><span class="tag">06</span><h3>越狱攻击</h3><p>从攻击视角理解安全边界，识别提示注入、角色扮演、策略绕过等风险。</p><ul><li>攻击提示</li><li>防御策略</li><li>安全评估</li><li>红队思维</li></ul></article>
+      <article class="card topic"><span class="tag">07</span><h3>大模型隐写</h3><p>让模型在自然文本中悄悄携带可识别信息，理解隐写编码、解码与检测。</p><ul><li>秘密信息</li><li>自然输出</li><li>接收方解码</li><li>隐蔽性评估</li></ul></article>
+      <article class="card topic"><span class="tag">08</span><h3>多模态模型</h3><p>理解文本、图像、音频等多模态输入如何共同参与理解与生成。</p><ul><li>视觉编码</li><li>跨模态对齐</li><li>VQA</li><li>生成应用</li></ul></article>
+      <article class="card topic"><span class="tag">09</span><h3>GUI 智能体</h3><p>让 Agent 通过观察界面、规划动作、执行点击/输入来完成点外卖、回消息、购物等任务。</p><ul><li>观察</li><li>计划</li><li>动作</li><li>反馈循环</li></ul></article>
+      <article class="card topic"><span class="tag">10</span><h3>智能体安全</h3><p>评估开放工具场景下的权限、数据泄露、错误行动与过度授权风险。</p><ul><li>工具权限</li><li>动作审计</li><li>风险标注</li><li>最小权限</li></ul></article>
+      <article class="card topic"><span class="tag">11</span><h3>RLHF 安全对齐</h3><p>用 PPO 等流程将人类偏好反馈注入模型训练，提升帮助性、诚实性与安全性。</p><ul><li>奖励模型</li><li>PPO</li><li>偏好数据</li><li>对齐评估</li></ul></article>
+      <article class="card topic"><span class="tag">NEW</span><h3>国产化大模型开发全流程</h3><p>README 提到与华为昇腾社区联合推出公益教程，覆盖 PPT、实验手册和视频，分初级、中级、高级。</p><ul><li>昇腾生态</li><li>模型迁移</li><li>调优开发</li><li>全流程实践</li></ul></article>
+    </div>
+  </section>
+
+  <section id="flows" class="section grid cols-2">
+    <div class="card">
+      <h2>微调与部署流程图</h2>
+      <p class="muted">对应 chapter1：从环境准备、数据准备、训练到 Gradio Spaces 部署。</p>
+      <div class="diagram">
+        <svg width="520" height="530" viewBox="0 0 520 530">
+          <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#65c7ff"/></marker></defs>
+          <rect width="520" height="530" rx="22" fill="#09172a"/>
+          <g font-size="15" font-weight="700" fill="#edf5ff">
+            <g fill="#142946" stroke="#31547d"><rect x="110" y="35" width="300" height="62" rx="18"/><rect x="110" y="130" width="300" height="62" rx="18"/><rect x="110" y="225" width="300" height="62" rx="18"/><rect x="110" y="320" width="300" height="62" rx="18"/><rect x="110" y="415" width="300" height="62" rx="18"/></g>
+            <text x="260" y="72" text-anchor="middle">1. 准备环境</text><text x="260" y="167" text-anchor="middle">2. 准备数据</text><text x="260" y="262" text-anchor="middle">3. 微调模型</text><text x="260" y="357" text-anchor="middle">4. 评估与预测</text><text x="260" y="452" text-anchor="middle">5. Gradio 部署 Demo</text>
+          </g>
+          <g stroke="#65c7ff" stroke-width="2.4" marker-end="url(#a)"><path d="M260 97 V130"/><path d="M260 192 V225"/><path d="M260 287 V320"/><path d="M260 382 V415"/></g>
+          <g fill="#9fb4d8" font-size="12"><text x="260" y="88" text-anchor="middle">Conda / Transformers / Torch</text><text x="260" y="183" text-anchor="middle">CSV / JSON / Label / Split</text><text x="260" y="278" text-anchor="middle">BERT / T5 / LoRA / 参数</text><text x="260" y="373" text-anchor="middle">Accuracy / Output / Bug Fix</text><text x="260" y="468" text-anchor="middle">app.py + requirements + model</text></g>
+        </svg>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Prompt / CoT 推理结构图</h2>
+      <p class="muted">对应 chapter2：从调用权限到提示设计，再到多路径推理与安全分析。</p>
+      <div class="diagram">
+        <svg width="520" height="530" viewBox="0 0 520 530">
+          <rect width="520" height="530" rx="22" fill="#09172a"/>
+          <g fill="#142946" stroke="#31547d">
+            <rect x="45" y="45" width="185" height="90" rx="18"/><rect x="290" y="45" width="185" height="90" rx="18"/>
+            <rect x="45" y="220" width="185" height="90" rx="18"/><rect x="290" y="220" width="185" height="90" rx="18"/>
+            <rect x="167" y="385" width="185" height="90" rx="18"/>
+          </g>
+          <g stroke="#65c7ff" stroke-width="2.2" fill="none">
+            <path d="M230 90 H290"/><path d="M137 135 V220"/><path d="M382 135 V220"/><path d="M137 310 C150 360 190 380 220 385"/><path d="M382 310 C370 360 330 380 300 385"/>
+          </g>
+          <g fill="#edf5ff" font-size="16" font-weight="800"><text x="137" y="88" text-anchor="middle">API 调用</text><text x="382" y="88" text-anchor="middle">Prompt 设计</text><text x="137" y="263" text-anchor="middle">CoT 自然推理</text><text x="382" y="263" text-anchor="middle">PoT 程序推理</text><text x="260" y="428" text-anchor="middle">自洽性 / 风险分析</text></g>
+          <g fill="#9fb4d8" font-size="12"><text x="137" y="112" text-anchor="middle">GUI / CLI / Stream</text><text x="382" y="112" text-anchor="middle">Zero-shot / Few-shot</text><text x="137" y="286" text-anchor="middle">step by step</text><text x="382" y="286" text-anchor="middle">solver() / code</text><text x="260" y="452" text-anchor="middle">多次采样 + 多数投票 + 安全标签</text></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="study" class="section">
+    <div class="card">
+      <h2>建议学习路径</h2>
+      <table>
+        <thead><tr><th>阶段</th><th>先学什么</th><th>为什么</th><th>输出物</th></tr></thead>
+        <tbody>
+          <tr><td>入门</td><td>提示学习与 API 调用 → 微调与部署</td><td>先学会调用模型，再理解如何让模型适配任务。</td><td>一个可运行的 API Demo + 一个文本分类微调 Demo</td></tr>
+          <tr><td>增强</td><td>数学推理 → 知识编辑 → 多模态</td><td>从推理能力、知识修改、跨模态输入三个维度扩展模型能力。</td><td>推理实验报告 + 知识编辑验证表 + 多模态样例</td></tr>
+          <tr><td>安全</td><td>水印 → 隐写 → 越狱攻击 → 智能体安全</td><td>理解内容可信、隐藏信息、攻防绕过和工具权限风险。</td><td>红队测试清单 + 风险矩阵</td></tr>
+          <tr><td>对齐</td><td>RLHF 安全对齐</td><td>把人类偏好纳入训练闭环，理解奖励模型与 PPO 的作用。</td><td>偏好数据 → 奖励模型 → PPO 的流程说明</td></tr>
+        </tbody>
+      </table>
+      <div class="diagram">
+        <svg width="1060" height="220" viewBox="0 0 1060 220">
+          <rect width="1060" height="220" rx="24" fill="#09172a"/>
+          <g fill="none" stroke="#65c7ff" stroke-width="3"><path d="M105 110 H955"/></g>
+          <g fill="#142946" stroke="#31547d"><circle cx="120" cy="110" r="48"/><circle cx="360" cy="110" r="48"/><circle cx="610" cy="110" r="48"/><circle cx="860" cy="110" r="48"/></g>
+          <g fill="#edf5ff" font-size="16" font-weight="800"><text x="120" y="106" text-anchor="middle">调用</text><text x="120" y="128" text-anchor="middle">模型</text><text x="360" y="106" text-anchor="middle">改造</text><text x="360" y="128" text-anchor="middle">模型</text><text x="610" y="106" text-anchor="middle">增强</text><text x="610" y="128" text-anchor="middle">能力</text><text x="860" y="106" text-anchor="middle">评估</text><text x="860" y="128" text-anchor="middle">安全</text></g>
+          <g fill="#9fb4d8" font-size="13"><text x="120" y="180" text-anchor="middle">API / Prompt</text><text x="360" y="180" text-anchor="middle">Fine-tune / Edit</text><text x="610" y="180" text-anchor="middle">Reasoning / MLLM / Agent</text><text x="860" y="180" text-anchor="middle">Watermark / Jailbreak / RLHF</text></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section grid cols-2">
+    <div class="card">
+      <h2>安全风险矩阵</h2>
+      <table>
+        <thead><tr><th>方向</th><th>关注点</th><th>学习时要问的问题</th></tr></thead>
+        <tbody>
+          <tr><td>水印</td><td>生成内容溯源</td><td>水印是否可检测、可抵抗改写？</td></tr>
+          <tr><td>隐写</td><td>自然文本中的隐藏信息</td><td>接收方如何解码，旁观者为何难以发现？</td></tr>
+          <tr><td>越狱</td><td>绕过安全策略</td><td>模型为什么会服从恶意提示？防御在哪里失效？</td></tr>
+          <tr><td>Agent 安全</td><td>工具调用与权限</td><td>行动是否最小权限？是否泄露或扩大访问？</td></tr>
+          <tr><td>RLHF</td><td>偏好与奖励</td><td>奖励模型是否真的代表安全的人类偏好？</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>把知识点变成项目的方式</h2>
+      <p class="muted">学习这类仓库时，不要只看 README。更有效的方法是把每章都转成一个小实验。</p>
+      <ol>
+        <li>先读 README 确认章节目标和材料入口。</li>
+        <li>下载或打开对应章节教程，提取「输入、核心方法、输出」。</li>
+        <li>运行 Notebook 或脚本，记录环境依赖与报错。</li>
+        <li>把流程画成图：数据流、模型流、工具调用流、安全决策流。</li>
+        <li>最后形成自己的学习卡片：概念、代码、结果、风险。</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="source" class="section">
+    <div class="card source">
+      <h2>来源说明</h2>
+      <p>本页面根据 <b>Lordog/dive-into-llms</b> 仓库公开 README 和部分章节 README 整理。源仓库 README 说明项目是《动手学大模型》系列编程实践教程，目标是提供大模型相关入门编程参考，并列出 11 个教程模块；chapter1 详细描述了微调、推理与 Gradio Spaces 部署流程；chapter2 详细描述了 API 调用、零样本/少样本提示、CoT/PoT、自洽性和 Agent 安全案例。</p>
+      <p>生成时间：2026-04-28。目标用途：作为个人学习仓库中的静态 HTML 知识站首页。</p>
+    </div>
+  </section>
+</main>
+<footer class="wrap footer">Generated for Culaccino9/damoxing-xuexi · Static HTML only · No build step required</footer>
+</body>
+</html>
