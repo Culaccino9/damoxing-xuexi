@@ -1,0 +1,30 @@
+name: Sync LLM Source
+
+on:
+  schedule:
+    - cron: '0 */12 * * *' # 每12小时同步一次
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Sync Script
+        run: node scripts/sync-source.mjs
+
+      - name: Commit Changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "chore: auto sync llm source" || echo "No changes"
+          git push
