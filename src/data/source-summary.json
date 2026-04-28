@@ -1,0 +1,26 @@
+{
+  "sourceRepo": "Lordog/dive-into-llms",
+  "chapters": [
+    {
+      "key": "root",
+      "title": "项目 README",
+      "source": "https://raw.githubusercontent.com/Lordog/dive-into-llms/main/README.md",
+      "summary": "《动手学大模型》项目整体目录与学习入口，包含微调、Prompt、知识编辑、数学推理、安全、Agent 等模块。",
+      "updatedAt": "2026-04-28T00:00:00.000Z"
+    },
+    {
+      "key": "chapter1",
+      "title": "Chapter1 微调与部署",
+      "source": "https://raw.githubusercontent.com/Lordog/dive-into-llms/main/documents/chapter1/README.md",
+      "summary": "围绕模型微调、推理与 Gradio 部署展开，强调从数据准备到模型上线的完整实践链路。",
+      "updatedAt": "2026-04-28T00:00:00.000Z"
+    },
+    {
+      "key": "chapter2",
+      "title": "Chapter2 Prompt 与推理",
+      "source": "https://raw.githubusercontent.com/Lordog/dive-into-llms/main/documents/chapter2/README.md",
+      "summary": "围绕 API 调用、Prompt 设计、CoT、PoT、自洽性和安全案例展开。",
+      "updatedAt": "2026-04-28T00:00:00.000Z"
+    }
+  ]
+}
