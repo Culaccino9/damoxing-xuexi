@@ -8,6 +8,7 @@ import Chapter3 from './pages/chapter3.jsx'
 import Chapter4 from './pages/chapter4.jsx'
 import Chapter5 from './pages/chapter5.jsx'
 import Chapter6 from './pages/chapter6.jsx'
+import SourceDetail from './pages/source-detail.jsx'
 
 export default function App(){
   return (
@@ -20,6 +21,7 @@ export default function App(){
         <Route path="chapter4" element={<Chapter4/>} />
         <Route path="chapter5" element={<Chapter5/>} />
         <Route path="chapter6" element={<Chapter6/>} />
+        <Route path="source/:key" element={<SourceDetail/>} />
       </Route>
     </Routes>
   )
