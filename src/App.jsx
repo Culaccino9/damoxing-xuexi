@@ -3,6 +3,7 @@ import Chapter1 from './pages/chapter1.jsx'
 import Chapter2 from './pages/chapter2.jsx'
 import Chapter3 from './pages/chapter3.jsx'
 import Chapter4 from './pages/chapter4.jsx'
+import Chapter5 from './pages/chapter5.jsx'
 import KnowledgeGraph from './components/KnowledgeGraph.jsx'
 
 function Home(){
@@ -34,6 +35,7 @@ function Home(){
         <li><Link to="/chapter2">Chapter2：Prompt 与推理</Link></li>
         <li><Link to="/chapter3">Chapter3：知识编辑</Link></li>
         <li><Link to="/chapter4">Chapter4：数学推理</Link></li>
+        <li><Link to="/chapter5">Chapter5：安全</Link></li>
       </ul>
     </div>
   )
@@ -48,7 +50,8 @@ export default function App(){
         <Link to="/chapter1">Chapter1 微调</Link> | 
         <Link to="/chapter2">Chapter2 Prompt</Link> | 
         <Link to="/chapter3">Chapter3 编辑</Link> | 
-        <Link to="/chapter4">Chapter4 推理</Link>
+        <Link to="/chapter4">Chapter4 推理</Link> | 
+        <Link to="/chapter5">Chapter5 安全</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home/>} />
@@ -56,6 +59,7 @@ export default function App(){
         <Route path="/chapter2" element={<Chapter2/>} />
         <Route path="/chapter3" element={<Chapter3/>} />
         <Route path="/chapter4" element={<Chapter4/>} />
+        <Route path="/chapter5" element={<Chapter5/>} />
       </Routes>
     </div>
   )
